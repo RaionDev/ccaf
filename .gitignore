@@ -1,0 +1,52 @@
+# ===== Flutter / Dart =====
+# Artefactos de compilación (Vercel los regenera; nunca se suben)
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+*.g.dart.bak
+
+# ===== FVM =====
+# La carpeta .fvm contiene un symlink al SDK completo: no debe subirse
+.fvm/
+!.fvm/fvm_config.json
+
+# ===== IDEs y editores =====
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# ===== Sistema operativo =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Android (generados) =====
+android/.gradle/
+android/app/debug/
+android/app/profile/
+android/app/release/
+android/local.properties
+android/key.properties
+*.jks
+*.keystore
+
+# ===== iOS (generados) =====
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/ephemeral/
+
+# ===== Web =====
+# OJO: la carpeta web/ SÍ se sube (es parte del proyecto).
+# Solo se ignora lo compilado, que ya está cubierto por build/ arriba.
+
+# ===== Logs y temporales =====
+*.log
+*.tmp
