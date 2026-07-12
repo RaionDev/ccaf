@@ -55,7 +55,7 @@ const questionsEs = <Question>[
       1,
       'stop_reason "tool_use" significa que Claude solicita ejecutar una tool. Tu código la ejecuta, agrega el tool_result a la conversación y vuelve a llamar al modelo. El modelo nunca ejecuta tools por sí mismo.'),
   Question(0,
-      '¿Cuál es la condición correcta para TERMINAR el loop agéntico?',
+      'Implementas el loop de un agente de soporte con el SDK y tu código debe decidir cuándo dejar de llamar a la API. ¿Señal de terminación robusta?',
       [
         'Detectar la palabra "DONE" en el texto',
         'Que la respuesta ya no contenga bloques de texto',
@@ -75,7 +75,7 @@ const questionsEs = <Question>[
       1,
       'Las señales en lenguaje natural son frágiles. El contrato del protocolo es stop_reason: "tool_use" continúa, "end_turn" detiene.'),
   Question(0,
-      '¿Cuál es el rol correcto de un límite máximo de iteraciones en un agente?',
+      'En code review ves que el agente de reembolsos usa un contador de 10 iteraciones para decidir cuándo terminar. ¿Cuál debería ser el rol de ese límite?',
       [
         'Es el mecanismo principal recomendado de terminación del loop',
         'Sustituye a stop_reason en agentes de larga duración',
@@ -85,7 +85,7 @@ const questionsEs = <Question>[
       2,
       'Un cap de iteraciones es un safety net razonable, pero usarlo como mecanismo primario cortaría tareas legítimas a medias. La parada primaria es end_turn.'),
   Question(0,
-      '¿Qué distingue a un AGENTE de un WORKFLOW?',
+      'Tu equipo debate si el pipeline de tickets necesita un agente o basta un workflow. Para decidir bien, ¿qué los distingue?',
       [
         'El agente decide qué tool usar y cuándo',
         'El workflow no puede invocar modelos de lenguaje',
@@ -105,7 +105,7 @@ const questionsEs = <Question>[
       1,
       'Regla de oro: la arquitectura más simple que resuelva el problema. Los agentes se justifican cuando el camino no puede predefinirse.'),
   Question(0,
-      'En el patrón orquestador-workers, ¿qué hace el orquestador?',
+      'Diseñas un sistema de investigación multi-agente con un coordinador y varios workers especializados. ¿Cuál es la responsabilidad del coordinador?',
       [
         'Ejecuta todas las subtareas él mismo en orden estrictamente secuencial',
         'Valida el formato de salida de cada worker',
@@ -145,7 +145,7 @@ const questionsEs = <Question>[
       1,
       'La autonomía se calibra por riesgo: acciones reversibles y de bajo impacto → autónomas; irreversibles o costosas → human-in-the-loop.'),
   Question(0,
-      '¿En qué consiste el patrón evaluator-optimizer?',
+      'Tu generador de reportes produce calidad inconsistente y tienes criterios de evaluación claros. Te sugieren evaluator-optimizer. ¿En qué consiste?',
       [
         'Un modelo genera y otro evalúa contra criterios, iterando',
         'Un optimizador ajusta la temperatura hasta minimizar el error',
@@ -165,7 +165,7 @@ const questionsEs = <Question>[
       2,
       'Sin dependencias entre subtareas, se paralelizan (sectioning) para reducir latencia. La secuencia solo se justifica cuando una salida alimenta a la siguiente.'),
   Question(0,
-      '¿Qué es prompt chaining y cuándo brilla?',
+      'Un pipeline de extracción legal tiene fases claras: clasificar, extraer y validar. Te proponen prompt chaining. ¿Qué es y cuándo brilla?',
       [
         'Concatenar varios system prompts en una sola llamada',
         'Pasos secuenciales donde cada llamada procesa la salida anterior',
@@ -175,7 +175,7 @@ const questionsEs = <Question>[
       1,
       'Chaining descompone tareas en fases verificables con gates entre pasos: mejor calidad y depuración a cambio de más latencia.'),
   Question(0,
-      '¿Cuál es el principal COSTO de pasar de un agente a un sistema multi-agente?',
+      'Tu agente único de soporte funciona bien, pero el equipo propone migrar a multi-agente porque escala mejor. ¿Cuál es el principal costo a evaluar?',
       [
         'Los subagentes no pueden usar tools ni MCP',
         'Se pierde el acceso al system prompt compartido',
@@ -185,7 +185,7 @@ const questionsEs = <Question>[
       3,
       'Cada agente añade superficie de fallo y costo. El examen premia elegir la arquitectura mínima suficiente, no la más sofisticada.'),
   Question(0,
-      'Antes de construir un agente, ¿cuál es el primer paso recomendado?',
+      'Te asignan construir un agente de IA para el área de finanzas, sin más detalle. ¿Cuál es el primer paso recomendado?',
       [
         'Definir criterios de éxito y confirmar la necesidad',
         'Diseñar el catálogo completo de tools disponibles',
@@ -195,7 +195,7 @@ const questionsEs = <Question>[
       0,
       'Sin criterios de éxito no puedes evaluar ni iterar. Y muchas "necesidades de agente" se resuelven con un workflow más simple.'),
   Question(0,
-      '¿Qué es el patrón de ROUTING?',
+      'Un endpoint recibe mezcladas consultas de facturación, técnicas y de ventas, y un solo prompt gigante las maneja mal. Te sugieren routing. ¿En qué consiste?',
       [
         'Balancear las requests entre varias API keys',
         'Redirigir cada tool_result al subagente que corresponde',
@@ -227,7 +227,7 @@ const questionsEs = <Question>[
 
   // ---------- D2: Claude Code ----------
   Question(1,
-      '¿Cuál es la función principal del archivo CLAUDE.md en un proyecto?',
+      'Un dev nuevo del equipo pregunta por qué el repo tiene un CLAUDE.md versionado en la raíz. ¿Cuál es su función principal?',
       [
         'Definir qué modelo y qué tools estarán disponibles al iniciar',
         'Memoria del proyecto que se carga al iniciar',
@@ -237,7 +237,7 @@ const questionsEs = <Question>[
       1,
       'CLAUDE.md se carga automáticamente al iniciar y funciona como memoria del proyecto: estándares, comandos frecuentes, arquitectura, advertencias.'),
   Question(1,
-      'Sobre la jerarquía de memorias CLAUDE.md, ¿cuál es la descripción correcta?',
+      'Tu empresa quiere políticas globales, cada repo sus convenciones y cada dev sus preferencias personales. ¿Cómo funciona la jerarquía de CLAUDE.md?',
       [
         'Solo puede existir un CLAUDE.md por máquina',
         'El nivel usuario siempre anula las políticas de la organización',
@@ -247,7 +247,7 @@ const questionsEs = <Question>[
       2,
       'Existen memorias a nivel enterprise, proyecto y usuario; se combinan en cascada y las políticas de organización tienen precedencia sobre preferencias personales.'),
   Question(1,
-      '¿Cómo se crea un slash command personalizado en Claude Code?',
+      'Tu equipo repite el mismo prompt de generar changelog cada semana y quiere convertirlo en /changelog. ¿Cómo se crea el comando?',
       [
         'Un .md con el prompt en .claude/commands/',
         'Registrándolo en la sección commands del settings.json del proyecto',
@@ -257,7 +257,7 @@ const questionsEs = <Question>[
       0,
       'Un slash command es un archivo .md dentro de .claude/commands/ (proyecto) o ~/.claude/commands/ (usuario); el nombre del archivo se vuelve el comando.'),
   Question(1,
-      'En una Skill (SKILL.md), ¿qué campo determina CUÁNDO el modelo decide activarla?',
+      'Creaste una skill de auditoría de dependencias pero Claude nunca la activa cuando debería. ¿Qué campo determina cuándo se activa?',
       [
         'El campo triggers con expresiones regulares',
         'La lista de tools declarada en el frontmatter',
@@ -267,7 +267,7 @@ const questionsEs = <Question>[
       3,
       'La description es el disparador: describe qué hace la skill y cuándo usarla. Una description vaga hace que la skill no se active correctamente.'),
   Question(1,
-      '¿Cuál es la ventaja clave de delegar una tarea a un SUBAGENTE en Claude Code?',
+      'Debes analizar 30 archivos de logs sin saturar tu sesión principal de Claude Code. ¿Ventaja clave de delegarlo a un subagente?',
       [
         'Aísla su contexto y devuelve solo el resultado al principal',
         'Se ejecuta con permisos elevados sin confirmaciones',
@@ -277,7 +277,7 @@ const questionsEs = <Question>[
       0,
       'Los subagentes tienen ventana de contexto propia: ideal para tareas que consumen mucho contexto, devolviendo solo un resumen al agente principal.'),
   Question(1,
-      'En un hook PreToolUse, ¿qué efecto tiene que el script termine con exit code 2?',
+      'Tu hook PreToolUse valida comandos Bash peligrosos y el script sale con exit code 2 al detectar uno. ¿Qué efecto tiene ese código?',
       [
         'Aprueba la acción y omite futuros hooks',
         'Bloquea la acción; Claude ve el stderr',
@@ -307,7 +307,7 @@ const questionsEs = <Question>[
       2,
       'Las buenas instrucciones son específicas y accionables. Vaguedades como "sé cuidadoso" o "buenas prácticas" no cambian el comportamiento.'),
   Question(1,
-      '¿Para qué sirve excluir rutas (reglas de ignore) en Claude Code?',
+      'Claude Code pierde tiempo y contexto leyendo node_modules y datos generados de tu monorepo. ¿Para qué sirven las reglas de exclusión?',
       [
         'Que archivos irrelevantes no consuman contexto',
         'Proteger los secretos del repo cifrándolos a nivel de sistema operativo',
@@ -317,7 +317,7 @@ const questionsEs = <Question>[
       0,
       'Controlar qué ve el agente es gestión de contexto: excluir builds, node_modules y datos generados mejora foco, costo y velocidad.'),
   Question(1,
-      '¿Para qué es típico un hook PostToolUse?',
+      'Los devs olvidan correr el formateador tras las ediciones de Claude y los PRs llegan desprolijos. ¿Uso típico de un hook PostToolUse?',
       [
         'Pedir confirmación humana antes de ejecutar acciones peligrosas',
         'Correr el formateador o linter tras cada edición',
@@ -347,7 +347,7 @@ const questionsEs = <Question>[
       2,
       'Los permisos allow/deny en .claude/settings.json se versionan con el repo y aplican a todo el equipo: gobernanza de qué puede hacer el agente. CLAUDE.md instruye pero no impone.'),
   Question(1,
-      '¿Qué hace el "plan mode" de Claude Code?',
+      'Vas a pedir una migración delicada de base de datos y no quieres que Claude toque nada sin tu aprobación. ¿Qué hace el plan mode?',
       [
         'Propone un plan sin ejecutar nada hasta aprobarlo',
         'Divide la tarea entre varios subagentes en paralelo',
@@ -357,7 +357,7 @@ const questionsEs = <Question>[
       0,
       'Plan mode separa pensar de actuar: ideal para cambios grandes o delicados; primero apruebas el plan y luego permites la ejecución.'),
   Question(1,
-      '¿Cómo compartes servidores MCP con todo tu equipo en un repositorio?',
+      'Configuraste el MCP de Jira en tu máquina y ahora todo el equipo lo quiere sin configurar nada a mano. ¿Cómo lo compartes?',
       [
         'Cada uno los registra manualmente con /mcp add',
         'Con un archivo .mcp.json versionado a nivel de proyecto',
@@ -377,7 +377,7 @@ const questionsEs = <Question>[
       0,
       'El modo headless -p con salida JSON estructurada permite integrarlo en scripts, leyendo resultado, costo y metadatos.'),
   Question(1,
-      '¿Cómo se define un subagente personalizado en Claude Code?',
+      'Quieres un subagente security-reviewer con herramientas limitadas, disponible para todo el equipo. ¿Cómo se define?',
       [
         'Archivo en .claude/agents/ con su frontmatter',
         'Con el comando /spawn seguido del nombre del agente',
@@ -397,7 +397,7 @@ const questionsEs = <Question>[
       2,
       'El atajo # añade la instrucción a la memoria (CLAUDE.md) sin salir del flujo, y quedará cargada en futuras sesiones.'),
   Question(1,
-      '¿Cuál es el riesgo de correr Claude Code con --dangerously-skip-permissions?',
+      'Un dev propone correr el pipeline nocturno con --dangerously-skip-permissions para que nunca se detenga. ¿Cuál es el riesgo?',
       [
         'Ejecuta acciones sin pedir confirmación humana',
         'Desactiva los hooks y las skills del proyecto',
@@ -409,7 +409,7 @@ const questionsEs = <Question>[
 
   // ---------- D3: Tools y MCP ----------
   Question(2,
-      '¿Qué elemento pesa MÁS para que Claude elija correctamente entre tus tools?',
+      'Tu agente elige mal entre las 8 tools del backend. Antes de tocar arquitectura, ¿qué elemento pesa MÁS en la selección?',
       [
         'El orden en que las tools aparecen declaradas dentro del array de tools',
         'La claridad de las descripciones de cada tool',
@@ -449,7 +449,7 @@ const questionsEs = <Question>[
       1,
       'Cada tool_use debe responderse con su tool_result (emparejado por id) en el siguiente mensaje de rol user; si no, la API rechaza la request.'),
   Question(2,
-      '¿Qué es el Model Context Protocol (MCP)?',
+      'Tu arquitecto pregunta por qué usar MCP en vez de integraciones ad-hoc para conectar Claude al CRM y a Jira. ¿Qué es MCP?',
       [
         'El formato interno con que Claude comprime su contexto',
         'Protocolo abierto para conectar modelos con datos y tools',
@@ -459,7 +459,7 @@ const questionsEs = <Question>[
       1,
       'MCP estandariza cómo las apps exponen capacidades a los modelos: un servidor MCP publica tools, resources y prompts que cualquier cliente compatible consume.'),
   Question(2,
-      '¿Cuáles son las tres primitivas principales que expone un servidor MCP?',
+      'Diseñas tu primer servidor MCP para el sistema de inventario y debes decidir qué exponer. ¿Cuáles son las tres primitivas disponibles?',
       [
         'Agents, chains y memories',
         'Requests, responses y events',
@@ -469,7 +469,7 @@ const questionsEs = <Question>[
       2,
       'Tools (acciones ejecutables), resources (datos de solo lectura) y prompts (plantillas reutilizables).'),
   Question(2,
-      'Para un servidor MCP local que corre en la misma máquina que el cliente, ¿transporte típico?',
+      'Tu servidor MCP corre en la misma máquina que Claude Code, sin red de por medio. ¿Transporte típico?',
       [
         'stdio',
         'WebSocket',
@@ -479,7 +479,7 @@ const questionsEs = <Question>[
       0,
       'stdio es el transporte estándar para servidores locales; para servidores remotos se usa HTTP streamable.'),
   Question(2,
-      '¿Cómo defines los parámetros que acepta una tool en la API de Claude?',
+      'Tu tool search_orders necesita recibir customer_id y date_range bien tipados y documentados. ¿Cómo se definen sus parámetros?',
       [
         'Describiéndolos en texto libre dentro del system prompt',
         'Con input_schema en formato JSON Schema',
@@ -489,7 +489,7 @@ const questionsEs = <Question>[
       1,
       'Cada tool declara name, description e input_schema (JSON Schema). Describir cada parámetro mejora la calidad de los argumentos generados.'),
   Question(2,
-      'Un buen NOMBRE de tool es…',
+      'Estás nombrando las tools del agente de soporte y un compañero propone genéricos tipo query_1. Un buen nombre de tool es…',
       [
         'genérico, como "execute", para conservar máxima flexibilidad',
         'corto, de una palabra, para ahorrar tokens',
@@ -499,7 +499,7 @@ const questionsEs = <Question>[
       3,
       'Nombres descriptivos y consistentes ayudan al modelo a mapear intención → tool correcta, igual que una buena API para humanos.'),
   Question(2,
-      '¿Para qué sirve el parámetro tool_choice con type "tool"?',
+      'Cada documento del pipeline DEBE pasar por extract_invoice_data, jamás texto libre ni otra tool. ¿Para qué sirve tool_choice con type "tool"?',
       [
         'Forzar que el modelo invoque una tool específica',
         'Dejar que el modelo elija libremente entre las tools',
@@ -519,7 +519,7 @@ const questionsEs = <Question>[
       1,
       'Los tool_results consumen contexto. Tools bien diseñadas devuelven lo necesario y ofrecen filtros/paginación para pedir más si hace falta. Base64 no reduce tokens.'),
   Question(2,
-      'En MCP, ¿cuál es la diferencia clave entre RESOURCES y TOOLS?',
+      'En tu servidor MCP del catálogo, los precios se consultan y los pedidos se crean. Para repartirlos bien, ¿cuál es la diferencia entre resources y tools?',
       [
         'Resources viven en servidores remotos y tools en el cliente local',
         'Resources exponen datos de lectura; tools son acciones invocables',
@@ -569,7 +569,7 @@ const questionsEs = <Question>[
       3,
       'Principio de mínimo privilegio: solo expón capacidades necesarias y con salvaguardas. Lo que no debe pasar nunca, mejor que ni exista como tool.'),
   Question(2,
-      '¿Qué son los PROMPTS como primitiva de MCP?',
+      'Tu servidor MCP ya expone tools y resources; el equipo pide plantillas estándar invocables para tareas frecuentes. ¿Qué son los prompts de MCP?',
       [
         'Los mensajes que el modelo envía al servidor',
         'Plantillas invocables por el usuario',
@@ -591,7 +591,7 @@ const questionsEs = <Question>[
 
   // ---------- D4: Prompts y Salida Estructurada ----------
   Question(3,
-      '¿Para qué se recomiendan las etiquetas XML en los prompts de Claude?',
+      'Tu prompt mezcla instrucciones, un contrato de 30 páginas y ejemplos, y el modelo confunde qué es qué. ¿Para qué sirven las etiquetas XML?',
       [
         'Delimitar instrucciones, datos y ejemplos',
         'Habilitar el modo estructurado del parser de mensajes de la API',
@@ -601,7 +601,7 @@ const questionsEs = <Question>[
       0,
       'Claude fue entrenado prestando atención a estructura XML: separar instrucciones, datos y ejemplos con tags reduce ambigüedad y mejora fiabilidad.'),
   Question(3,
-      '¿Cuál es el efecto principal de incluir ejemplos few-shot en el prompt?',
+      'El formato de salida de tu clasificador varía en cada llamada pese a instrucciones detalladas. ¿Efecto principal de añadir ejemplos few-shot?',
       [
         'Amplían la ventana de contexto disponible para la tarea',
         'Enseñan por demostración el formato y criterio esperados',
@@ -631,7 +631,7 @@ const questionsEs = <Question>[
       1,
       'Marca required solo lo que siempre existe en la fuente. Para campos que pueden faltar usa type: ["string", "null"]; un required sin datos induce fabricación.'),
   Question(3,
-      '¿Qué logra el "prefill" (precompletar el inicio del turno del assistant)?',
+      'Tu extractor antepone "¡Claro! Aquí está el JSON:" a la salida y rompe el parser. ¿Qué logra el prefill del turno del assistant?',
       [
         'Forzar el comienzo exacto de la respuesta',
         'Precargar el prompt completo en el cache antes de enviar la request',
@@ -641,7 +641,7 @@ const questionsEs = <Question>[
       0,
       'Prefilling controla cómo arranca la respuesta: útil para forzar JSON inmediato (empezando con "{"), mantener un personaje o continuar un formato.'),
   Question(3,
-      '¿Cuál es el rol del SYSTEM prompt frente al mensaje de usuario?',
+      'Repartes el contenido de un agente legal entre system prompt y mensaje de usuario. ¿Cuál es el rol de cada uno?',
       [
         'El system pesa menos que el mensaje de usuario',
         'El system prompt solo se aplica al primer turno de la conversación',
@@ -651,7 +651,7 @@ const questionsEs = <Question>[
       3,
       'Separar lo estable (rol, políticas, formato) en system y lo variable en user también favorece el prompt caching del prefijo.'),
   Question(3,
-      'Para una tarea de razonamiento complejo multi-paso, una técnica efectiva es…',
+      'Tu agente falla en cálculos de prorrateo multi-paso porque responde de inmediato. Una técnica efectiva es…',
       [
         'pedir razonamiento paso a paso antes de la respuesta final',
         'aumentar la temperatura para explorar más opciones',
@@ -661,7 +661,7 @@ const questionsEs = <Question>[
       0,
       'Dar espacio para razonar antes de responder (chain of thought o extended thinking) mejora análisis, matemáticas y planificación. Justificar después de responder no mejora la respuesta.'),
   Question(3,
-      '¿Cómo deberías EVALUAR sistemáticamente cambios en un prompt de producción?',
+      'Vas a modificar el prompt del agente que atiende 10 000 clientes al día. ¿Cómo evalúas el cambio antes de desplegar?',
       [
         'Con pruebas manuales de los casos más frecuentes',
         'Con un set de evals y métricas entre versiones',
@@ -681,7 +681,7 @@ const questionsEs = <Question>[
       0,
       'Capas que se refuerzan: instrucciones claras, demostración y prefill; o el camino garantizado a nivel de sintaxis, tool_use con JSON Schema.'),
   Question(3,
-      'Para una tarea de EXTRACCIÓN de datos con máxima consistencia, ¿qué temperature conviene?',
+      'Tu pipeline extrae montos de facturas y cada corrida da valores ligeramente distintos. ¿Qué temperature conviene?',
       [
         'Alta, para que explore todas las interpretaciones',
         'Media, como equilibrio entre precisión y cobertura',
@@ -691,7 +691,7 @@ const questionsEs = <Question>[
       2,
       'Temperature controla la aleatoriedad del muestreo: baja para tareas deterministas (extracción, clasificación), alta para creatividad.'),
   Question(3,
-      'La respuesta llega con stop_reason: "max_tokens". ¿Qué significa?',
+      'En producción, el 3% de tus extracciones llega con stop_reason "max_tokens". ¿Qué significa esa señal?',
       [
         'El modelo terminó su respuesta dentro del límite',
         'La respuesta fue cortada por el límite de tokens de salida',
@@ -701,7 +701,7 @@ const questionsEs = <Question>[
       1,
       'max_tokens trunca la salida: especialmente grave con JSON (queda inválido). Producción robusta siempre inspecciona stop_reason.'),
   Question(3,
-      '¿Para qué sirven las stop_sequences?',
+      'Quieres que la generación se corte exactamente al cerrarse la etiqueta del informe, sin texto extra. ¿Para qué sirven las stop_sequences?',
       [
         'Cortar la generación ante una secuencia definida',
         'Filtrar palabras prohibidas de la respuesta final',
@@ -711,7 +711,7 @@ const questionsEs = <Question>[
       0,
       'Con stop_sequences delimitas dónde debe terminar la salida (p. ej. al cerrar una etiqueta), útil para formatos controlados.'),
   Question(3,
-      '¿Qué estilo de instrucción funciona mejor?',
+      'Tu system prompt es una lista de 15 prohibiciones y el agente sigue errático. ¿Qué estilo de instrucción funciona mejor?',
       [
         'Prohibiciones exhaustivas de lo que no debe hacer',
         'Positivas: decir qué hacer, con restricciones',
@@ -721,7 +721,7 @@ const questionsEs = <Question>[
       1,
       'Decir qué hacer orienta mejor que solo decir qué evitar. Las negativas puras dejan al modelo sin dirección clara.'),
   Question(3,
-      '¿Cuál es una técnica efectiva para REDUCIR alucinaciones al responder sobre un documento?',
+      'Tu agente de contratos encuentra cláusulas inexistentes cuando el documento no cubre la pregunta. ¿Técnica efectiva para reducirlo?',
       [
         'Permitir responder "no está en el documento" y exigir citas',
         'Instruir al modelo a responder siempre con seguridad',
@@ -731,7 +731,7 @@ const questionsEs = <Question>[
       0,
       'La salida de escape ("di que no está si no está") más el grounding con citas reduce respuestas fabricadas: el modelo deja de sentirse obligado a inventar.'),
   Question(3,
-      '¿Qué aporta el "role prompting" en el system prompt (p. ej. "Eres un analista financiero senior")?',
+      'Tu asistente responde consultas fiscales con tono genérico y criterio pobre. ¿Qué aporta asignarle un rol experto en el system prompt?',
       [
         'Orienta tono, vocabulario y criterio del dominio',
         'Desbloquea conocimiento normalmente restringido del dominio experto',
@@ -773,7 +773,7 @@ const questionsEs = <Question>[
 
   // ---------- D5: Gestión de Contexto ----------
   Question(4,
-      '¿Qué consume espacio dentro de la ventana de contexto en una conversación con tools?',
+      'Tu agente agota la ventana a los 60 turnos y el equipo no entiende por qué si los mensajes son cortos. ¿Qué consume la ventana?',
       [
         'Solo los mensajes de usuario y assistant',
         'System, historial, tools y tool_results',
@@ -783,7 +783,7 @@ const questionsEs = <Question>[
       1,
       'La ventana es finita y compartida: prompts, historia, tools y resultados suman tokens. Gestionar qué entra es una competencia central del examen.'),
   Question(4,
-      'Con contextos extremadamente largos, ¿qué fenómeno degrada la calidad?',
+      'Metiste 150K tokens de documentación al prompt esperando mejores respuestas, y la calidad BAJÓ. ¿Qué fenómeno lo explica?',
       [
         'La dilución de atención sobre los detalles relevantes',
         'La expiración de los tokens más antiguos',
@@ -793,7 +793,7 @@ const questionsEs = <Question>[
       0,
       'Más contexto no siempre es mejor: la información relevante compite con ruido. Curar lo relevante, resumir y aislar en subagentes combate la dilución.'),
   Question(4,
-      'Para aprovechar el PROMPT CACHING, ¿cómo organizas el prompt?',
+      'Tu agente repite el mismo system de 8K tokens y 20 tools en cada llamada, pagándolos completos cada vez. ¿Cómo organizas el prompt para cachear?',
       [
         'Contenido variable primero y los bloques estables al final',
         'Alternando bloques estables y variables',
@@ -813,7 +813,7 @@ const questionsEs = <Question>[
       0,
       'La compactación reemplaza turnos viejos por un resumen fiel del estado, liberando ventana sin perder lo esencial ni el hilo de la tarea.'),
   Question(4,
-      '¿Cuándo conviene delegar una subtarea a un subagente en términos de contexto?',
+      'Tu agente principal debe explorar 30 repos y a la vez sostener una conversación larga con el usuario. ¿Cuándo conviene delegar a un subagente?',
       [
         'Cuando la subtarea necesita ver el historial completo de la conversación',
         'Cuando genera mucho contexto y solo importa el resumen',
@@ -863,7 +863,7 @@ const questionsEs = <Question>[
       3,
       'Ante datos en conflicto de fuentes creíbles, se anota el conflicto con atribución de cada fuente en vez de elegir arbitrariamente. Incluir fechas de publicación evita confundir diferencias temporales con contradicciones.'),
   Question(4,
-      'La ventana de contexto de los modelos Claude actuales es del orden de…',
+      'Evalúas si un expediente de 300 páginas cabe en una sola llamada. La ventana de los modelos actuales es del orden de…',
       [
         '8 000 tokens',
         '32 000 tokens',
@@ -913,7 +913,7 @@ const questionsEs = <Question>[
       2,
       'Ante múltiples coincidencias, el agente debe pedir datos adicionales (email, número de orden) en vez de seleccionar por heurística: elegir mal lleva a operaciones sobre la cuenta equivocada.'),
   Question(4,
-      'Al recortar historial de una conversación larga con tools, ¿qué conviene eliminar o resumir PRIMERO?',
+      'Tu sesión con tools va al 90% de la ventana y debes liberar espacio sin perder el hilo. ¿Qué eliminas o resumes PRIMERO?',
       [
         'El system prompt y las definiciones de tools',
         'Los tool_results viejos y voluminosos ya procesados',
@@ -1550,13 +1550,13 @@ const questionsEs = <Question>[
   Question(4,
       'Cliente: "Es ridículo, llevo 20 minutos esperando. Conéctame con una persona real". El agente ve que es un reseteo de contraseña de 30 segundos. ¿Qué debe hacer?',
       [
-        'Escalar de inmediato sin intentar resolver nada',
+        'Honrar la petición y escalar a un humano de inmediato',
         'Análisis de sentimiento para confirmar la frustración primero',
         'Preguntarle si prefiere esperar al humano o resolverlo ya',
-        'Reconocer la frustración y ofrecer resolverlo ya; escalar si insiste'
+        'Reconocer la frustración y ofrecer resolverlo; escalar si insiste'
       ],
-      3,
-      'Matiz del examen: cuando el problema está claramente dentro de la capacidad del agente, se reconoce la frustración y se ofrece la resolución inmediata, escalando solo si el cliente reitera su preferencia.'),
+      0,
+      'Principio del examen: una petición EXPLÍCITA de hablar con un humano se honra de inmediato en la primera petición, sin investigar primero. Que el agente PUEDA resolverlo no es el factor decisivo; proceder pese a la petición solo aumenta la frustración.'),
   Question(2,
       'search_knowledge_base atrapa "cancela mi suscripción"; tras añadir "cancelaciones" a process_action, ahora este responde consultas informativas. ¿Solución más efectiva?',
       [
@@ -1627,4 +1627,316 @@ Question(1,
       ],
       2,
       'La mención con @ añade el archivo (o directorio) directamente al contexto de la conversación: más preciso y barato que pegar contenido y más fiable que esperar a que el agente lo encuentre.'),
+// ---------- Refuerzo dirigido: objetivos fallados en el score report ----------
+  Question(1,
+      'Tres reglas del equipo: (1) estilo de mensajes de commit, (2) prohibido tocar /prod-config, (3) preferir tests unitarios primero. ¿Cuál EXIGE enforcement con hooks o permisos, no CLAUDE.md?',
+      [
+        'La (1): el estilo de commits es lo más visible',
+        'La (2): es una prohibición que debe garantizarse siempre',
+        'La (3): el orden de los tests afecta la calidad',
+        'Las tres pertenecen a CLAUDE.md por igual'
+      ],
+      1,
+      'Criterio del examen: preferencias y convenciones (estilo, orden de trabajo) van en CLAUDE.md; las prohibiciones que NUNCA deben violarse (tocar /prod-config) van en deny permissions o hooks, que se aplican determinísticamente.'),
+  Question(1,
+      'Pese a la instrucción en CLAUDE.md de nunca ejecutar migraciones en producción, Claude lo hizo una de cada ~50 sesiones. ¿Lección arquitectónica?',
+      [
+        'Reescribir la instrucción en mayúsculas y repetirla',
+        'Bajar la temperatura de la sesión a cero',
+        'CLAUDE.md es probabilístico: lo prohibido se bloquea con permisos o hooks',
+        'Añadir ejemplos few-shot de sesiones correctas'
+      ],
+      2,
+      'Una tasa de fallo del 2% en instrucciones es esperable: el modelo puede desviarse. Todo lo que tenga tolerancia CERO a fallos se mueve a enforcement determinístico (deny permissions, hooks PreToolUse).'),
+  Question(2,
+      'Pruebas un server MCP experimental que solo tú usas, dentro de un repo compartido por 40 devs. ¿Dónde lo configuras?',
+      [
+        'En el .mcp.json del proyecto, versionado en git',
+        'A nivel de usuario (local), sin imponerlo al equipo',
+        'En el CLAUDE.md raíz con una sección mcp',
+        'En settings.json del proyecto con allow'
+      ],
+      1,
+      'Regla de scope: project-level (.mcp.json versionado) para tooling compartido del equipo; user-level/local para configuraciones personales o experimentales. Meter tu experimento al repo se lo impone a 40 personas.'),
+  Question(2,
+      'Añadiste el server MCP al .mcp.json pero las tools no aparecen en la sesión. ¿Primer paso de verificación?',
+      [
+        'Verificar el descubrimiento con /mcp y los errores de arranque del server',
+        'Reinstalar Claude Code desde cero',
+        'Mover la configuración a ~/.claude.json',
+        'Duplicar el server también en el scope de usuario'
+      ],
+      0,
+      'La integración MCP se verifica: /mcp muestra los servers conectados y sus tools descubiertas. Si el server no arranca (ruta, credenciales, dependencias), ahí aparece el error antes de tocar scopes.'),
+  Question(3,
+      'Un pipeline bancario consume el JSON aguas abajo sin tolerancia: un solo JSON malformado detiene la línea. ¿Método de salida estructurada?',
+      [
+        'Instrucciones detalladas y ejemplos en el prompt',
+        'Prefill del turno del assistant con la llave inicial',
+        'Tool use con JSON Schema, que garantiza la sintaxis',
+        'Pedir markdown y convertirlo a JSON en el backend'
+      ],
+      2,
+      'La elección del método depende de la estrictez requerida: cuando el cumplimiento del schema es crítico, tool use con JSON Schema es el único que GARANTIZA sintaxis válida. Prompt y prefill solo la hacen probable.'),
+  Question(3,
+      'Para un resumen interno donde un JSON ocasionalmente imperfecto es tolerable y quieres mínima complejidad, ¿método razonable?',
+      [
+        'Tool use con schema estricto y validación completa',
+        'Formato por prompt con instrucción y ejemplo, aceptando el trade-off',
+        'Fine-tunear un modelo de resúmenes JSON',
+        'Procesarlo por la Batch API para más control'
+      ],
+      1,
+      'El examen pide EMPAREJAR método y estrictez: si la tolerancia a fallos es alta, el formato por prompt es más simple y suficiente. El schema estricto se reserva para pipelines que no toleran errores.'),
+  Question(3,
+      'En tus facturas, purchase_order existe solo a veces y currency es una de 5 monedas conocidas con casos raros. ¿Diseño de schema?',
+      [
+        'Ambos campos como strings required',
+        'purchase_order required y currency como string libre',
+        'Ambos como strings libres opcionales',
+        'purchase_order nullable/opcional y currency enum con "other"'
+      ],
+      3,
+      'Cada campo modela su realidad: lo que puede faltar es nullable/opcional (evita fabricación); lo que tiene catálogo conocido con excepciones es enum + "other" (+ detalle). Diseño de schema = anti-alucinación estructural.'),
+  Question(3,
+      'Tras marcar todos los campos como required para "garantizar completitud", la precisión de la extracción CAYÓ. ¿Explicación probable?',
+      [
+        'El schema más grande consume demasiados tokens',
+        'El modelo fabrica valores para campos ausentes de la fuente',
+        'La API ignora los campos required del schema',
+        'La temperatura interactúa mal con los required'
+      ],
+      1,
+      'required obliga al modelo a producir SIEMPRE un valor: cuando el dato no existe en el documento, lo inventa para cumplir el contrato. Required solo para lo que siempre está presente en la fuente.'),
+  Question(3,
+      'Tu extractor a veces responde "No encontré datos suficientes" como texto libre y rompe el pipeline. ¿Arreglo que lo GARANTIZA?',
+      [
+        'Instrucción destacada: responder únicamente JSON',
+        'Un retry automático cuando la salida no parsea',
+        'tool_choice forzando la tool de extracción, con campos nullable',
+        'Prefill de la respuesta con la llave inicial'
+      ],
+      2,
+      'tool_choice forzado garantiza la invocación de la tool (nunca texto conversacional); los campos nullable le dan una vía legítima para representar "no hay datos" DENTRO del schema. Instrucciones y prefill solo reducen la probabilidad.'),
+  Question(2,
+      'process_refund requiere el order_id que devuelve lookup_order, pero el agente a veces llama process_refund primero con IDs inventados. ¿Solución?',
+      [
+        'Eliminar process_refund del catálogo de tools',
+        'Declarar el prerrequisito en las descripciones y validar IDs no obtenidos',
+        'Configurar tool_choice: "any" en cada turno',
+        'Reducir la temperatura del agente de refunds'
+      ],
+      1,
+      'Secuenciación de prerequisitos: la descripción de process_refund debe declarar que order_id proviene de lookup_order, y el backend valida/rechaza IDs que no fueron obtenidos, devolviendo un error accionable.'),
+  Question(2,
+      'Tu tool de inventario falla por timeout de red, por SKU inexistente o por permiso denegado, pero siempre devuelve "Error". El agente reintenta todo por igual. ¿Diseño correcto?',
+      [
+        'Errores tipificados con recuperabilidad y próxima acción sugerida',
+        'Aumentar el número de reintentos automáticos',
+        'Capturar los errores y devolver un resultado vacío',
+        'Escalar a humano ante cualquier tipo de error'
+      ],
+      0,
+      'El manejo de errores MCP del examen: errores estructurados por TIPO (timeout: retryable; SKU inexistente: no retryable, informar; permiso: escalar) para que el agente decida informadamente en vez de reintentar a ciegas.'),
+  Question(2,
+      'Un tool_result de error devuelve retryable: true y retry_after: 30 junto al código RATE_LIMITED. ¿Qué permite frente a un "Operation failed" genérico?',
+      [
+        'Nada: el modelo no puede leer campos estructurados',
+        'Reduce el tamaño en tokens del tool_result',
+        'El agente decide informadamente: esperar y reintentar en vez de adivinar',
+        'Evita tener que marcar is_error en el resultado'
+      ],
+      2,
+      'La información estructurada del error (tipo, recuperabilidad, tiempo de espera) convierte el fallo en una decisión: reintentar tras 30s. Con "Operation failed", el agente solo puede adivinar.'),
+  Question(2,
+      'get_account_balance y get_account_statement se confunden entre sí pese a tener descripciones de una línea. ¿Qué añades a cada descripción?',
+      [
+        'Sinónimos del nombre de la tool para más cobertura',
+        'Ejemplos de uso, formato de inputs y guía de cuándo usar una y NO la otra',
+        'Un número de prioridad para ordenar la selección',
+        'Nada: tools parecidas siempre se consolidan'
+      ],
+      1,
+      'La receta del examen para tools semánticamente similares: casos de uso de ejemplo, especificación de formatos de entrada y desambiguación explícita ("usa esta cuando…, usa la otra cuando…").'),
+  Question(0,
+      'Tu loop trata stop_reason "max_tokens" igual que "end_turn" y entrega respuestas truncadas como finales. ¿Manejo correcto?',
+      [
+        'Son equivalentes: ambos indican fin del turno',
+        'Cancelar la conversación y empezar de nuevo',
+        'Tratar max_tokens como si fuera tool_use',
+        'max_tokens indica truncamiento: continuar o reintentar con más tokens'
+      ],
+      3,
+      'El loop distingue TRES señales: tool_use (ejecutar y continuar), end_turn (terminar) y max_tokens (salida truncada: no es un final válido; se continúa la generación o se reintenta con un límite mayor).'),
+  Question(1,
+      'El código generado tiene 4 bugs independientes entre sí y 2 que interactúan entre ellos. ¿Cómo estructuras el feedback de refinamiento?',
+      [
+        'Los que interactúan juntos en un mensaje; los independientes pueden ir en secuencia',
+        'Todos juntos siempre, para ahorrar turnos de conversación',
+        'Uno por uno siempre, para no confundir al modelo',
+        'Regenerar el código desde cero con el prompt original'
+      ],
+      0,
+      'Patrón de refinamiento iterativo: los problemas que INTERACTÚAN se describen juntos (el arreglo de uno afecta al otro); los independientes pueden abordarse secuencialmente con feedback dirigido.'),
+  Question(4,
+      'Debes ubicar dónde se calcula el IVA en un monorepo de 500K líneas sin quemar la ventana. ¿Estrategia de exploración?',
+      [
+        'Read de los 30 archivos principales del proyecto',
+        'Grep por términos, Glob para acotar rutas y Read solo de lo relevante',
+        'Pedir al agente que lea el repositorio completo',
+        'Un subagente que cargue todos los módulos en su contexto'
+      ],
+      1,
+      'Exploración incremental del examen: Grep localiza términos (barato), Glob acota por patrones de ruta, y Read se reserva para los pocos archivos confirmados como relevantes. Leer a lo ancho quema contexto sin foco.'),
+  Question(4,
+      'Una exploración de codebase tomará varias sesiones que exceden la ventana de contexto. ¿Cómo sostienes la coherencia entre sesiones?',
+      [
+        'Repetir la exploración completa al inicio de cada sesión',
+        'Confiar en que el prompt cache preserva lo aprendido',
+        'Un archivo scratchpad con hallazgos y estado, releído al retomar',
+        'Subir max_tokens al máximo en cada llamada'
+      ],
+      2,
+      'El scratchpad (notas de hallazgos, mapa del código, pendientes) persiste FUERA de la ventana y se relee al retomar: coherencia multi-sesión sin repetir trabajo. El cache no sobrevive entre sesiones ni sustituye memoria.'),
+  Question(1,
+      'Pides a Claude Code (a) renombrar una variable local y (b) rediseñar el módulo de autenticación. ¿Cuándo usar plan mode?',
+      [
+        'En ambos casos, por consistencia del flujo',
+        'Solo en (b): gran alcance e incertidumbre; (a) va directo',
+        'Solo en (a): los renombres rompen referencias',
+        'En ninguno: plan mode es solo para depurar'
+      ],
+      1,
+      'Plan mode se decide por alcance, reversibilidad e incertidumbre arquitectónica: el rediseño de auth pide plan y revisión; un renombre local es trivial y reversible, ejecución directa.'),
+  Question(4,
+      'Extraes 20 campos por documento; solo monto_total y fecha_vencimiento causan pérdidas reales si fallan. ¿Routing de revisión humana?',
+      [
+        'Revisar una muestra aleatoria de documentos completos',
+        'Revisar el 100% de los documentos procesados',
+        'Confiar en la métrica de precisión agregada del pipeline',
+        'Enrutar por confianza y ambigüedad de los CAMPOS críticos'
+      ],
+      3,
+      'El routing del examen es por campo y por riesgo, no aleatorio por documento: baja confianza o ambigüedad en los campos que causan pérdidas dispara revisión; los 18 campos benignos no ameritan el mismo esfuerzo.'),
+  Question(0,
+      'Tu coordinador de investigación genera SIEMPRE los mismos 5 subagentes fijos, aunque el tema no los necesite. ¿Mejora arquitectónica?',
+      [
+        'Descomposición dinámica: crear subtareas según lo que se descubre',
+        'Aumentar a 8 subagentes fijos para más cobertura',
+        'Reducir a 3 subagentes fijos para menos costo',
+        'Ejecutar los 5 fijos en paralelo para ganar velocidad'
+      ],
+      0,
+      'La descomposición debe ADAPTARSE: el coordinador genera subtareas dinámicamente conforme surgen hallazgos, en vez de ejecutar una plantilla fija que sobra en temas simples y falta en temas complejos.'),
+// ---------- Conceptos nuevos del banco oficial de muestra ----------
+  Question(0,
+      'Un colega propone que el loop guarde los tool_results en una base de datos y pase al modelo solo un resumen por iteración. ¿Cuándo degradaría esto al agente?',
+      [
+        'Cuando los resultados llegan en menos de 200 ms',
+        'Cuando hay más de 10 llamadas por sesión',
+        'Cuando el modelo debe razonar sobre varios resultados a la vez y el resumen omite detalles',
+        'Cuando los resultados contienen datos binarios'
+      ],
+      2,
+      'El loop depende de que los resultados estén en el historial para que el modelo razone sobre lo ya descubierto antes de decidir su siguiente acción. Un resumen puede omitir valores de campos, códigos de error o datos condicionales que esa decisión necesita.'),
+  Question(0,
+      'Un subagente de análisis cubrió solo 3 de las 5 fuentes asignadas. ¿Cómo re-delega el coordinador el trabajo faltante?',
+      [
+        'Pedir a síntesis que infiera el contenido de las fuentes faltantes',
+        'Re-invocar al subagente SOLO con las 2 fuentes faltantes, pasando lo ya completado como contexto',
+        'Enviar las 5 fuentes de nuevo a una instancia nueva',
+        'Que el coordinador analice las 2 fuentes él mismo'
+      ],
+      1,
+      'El rol del coordinador incluye evaluar brechas y re-delegar trabajo DIRIGIDO: solo lo faltante, con los hallazgos previos como contexto. Reprocesar todo desperdicia recursos; inferir contenido fabrica datos; analizarlo él mismo rompe la especialización.'),
+  Question(4,
+      'Un cliente trae TRES problemas independientes en un mensaje (disputa de cobro, pedido perdido, cambio de email) y el agente los procesa en serie, tardando 3-4 minutos cada uno. ¿Rediseño correcto?',
+      [
+        'Atender solo el prioritario y pedir tickets separados',
+        'Mantener la serie pero cachear resultados intermedios',
+        'Un subagente único especializado en multi-issue',
+        'Descomponer en ítems paralelos con el contexto de cliente compartido y compilar una respuesta unificada'
+      ],
+      3,
+      'Preocupaciones independientes se investigan EN PARALELO reutilizando el contexto de cliente ya recuperado, y se compila una respuesta única. Pedir tickets separados degrada la experiencia; el caché no elimina el cuello de botella serial.'),
+  Question(0,
+      'Tus MCP tools devuelven formatos heterogéneos: timestamps Unix, fechas ISO 8601 y códigos numéricos de estado (1=activo, 2=pausado). El agente los malinterpreta al razonar. ¿Arreglo arquitectónico?',
+      [
+        'Instrucciones de conversión de formatos en el system prompt',
+        'Hooks PostToolUse que normalicen los resultados ANTES de que el modelo los procese',
+        'Reformatear fechas y estados en la respuesta final',
+        'Actualizar los tres backends a un formato uniforme'
+      ],
+      1,
+      'PostToolUse intercepta y transforma los resultados antes de que el modelo razone sobre ellos: siempre ve datos normalizados. Reformatear al final no repara conclusiones ya erróneas; cambiar backends acopla y quizá no es viable; el prompt es probabilístico.'),
+  Question(4,
+      'Tu hook PostToolUse añade un resumen formateado del output de Bash pero CONSERVA también el output crudo completo. Las sesiones agotan contexto muy rápido. ¿Cambio más efectivo?',
+      [
+        'Desactivar el hook y procesar el output crudo',
+        'Subir max_tokens para acomodar ambos outputs',
+        'Que el hook devuelva SOLO el resumen, recortando el output crudo',
+        'Pre-procesar los comandos Bash para acortar su salida'
+      ],
+      2,
+      'Conservar crudo + resumen duplica el consumo de contexto de cada llamada. El hook debe devolver solo los datos relevantes: recortar el output verboso ataca la causa raíz. max_tokens controla la salida, no el contexto creciente.'),
+  Question(1,
+      'Edit falla con "Match not unique: found 3 occurrences" al editar un valor en un bloque de líneas casi idénticas. ¿Fallback correcto?',
+      [
+        'sed vía Bash para reemplazar todas las ocurrencias',
+        'Read del archivo y reintentar Edit con un old_string más largo que sea único',
+        'Write para sobreescribir el archivo completo corregido',
+        'Grep para obtener el número de línea y pasárselo a Edit'
+      ],
+      1,
+      'Ante texto no único, se usa Read para hallar contexto circundante suficiente y reintentar Edit con un anclaje único: más quirúrgico que sobreescribir todo. Edit no acepta números de línea, y sed reemplazaría las 3 ocurrencias.'),
+  Question(1,
+      'En CI, Claude sugiere casos de prueba que YA existen en los archivos de test, desperdiciando tiempo de revisión. ¿Arreglo más directo?',
+      [
+        'Documentar en CLAUDE.md los estándares y ordenar revisar los tests existentes antes de sugerir',
+        'Añadir el flag -p a la invocación del pipeline',
+        'Usar --output-format json para deduplicar después',
+        'Un script post-proceso que filtre duplicados'
+      ],
+      0,
+      'La causa raíz es que Claude no sabe qué tests existen. Documentar estándares y fixtures en CLAUDE.md e instruir revisar los tests existentes lo arregla en el momento de la generación; filtrar después es un parche que añade complejidad.'),
+  Question(1,
+      'Tu pipeline parsea con regex el texto libre de Claude para extraer archivo, línea y comentario de cada hallazgo, y el parser se rompe cuando el formato deriva. ¿Solución más robusta?',
+      [
+        'Instrucciones de formato más estrictas con validación que rechace desvíos',
+        '--output-format json con --json-schema definiendo campos file, line y comment',
+        'Una segunda llamada a Claude que normalice la primera respuesta',
+        'Cambiar a un único comentario resumen sin líneas'
+      ],
+      1,
+      'Con --output-format json y --json-schema, cada hallazgo cumple el schema POR CONSTRUCCIÓN: se elimina la deriva de formato y el regex. Endurecer instrucciones sigue dependiendo de la consistencia del modelo, que es la causa de la rotura.'),
+  Question(3,
+      'Tu extractor clasifica bien cláusulas estándar, pero falla en las ambiguas que mezclan dos categorías (terminación + fuerza mayor). ¿Enfoque few-shot más efectivo?',
+      [
+        'Más ejemplos de cláusulas estándar para reforzar el schema',
+        'Extraer sin clasificar y usar un clasificador de reglas',
+        'Un campo de confianza que enrute lo dudoso a humanos',
+        'Ejemplos DIRIGIDOS a los casos ambiguos, mostrando el razonamiento de por qué van en una categoría y no en la otra'
+      ],
+      3,
+      'Los few-shot dirigidos al modo de fallo — casos frontera CON el razonamiento de la decisión — enseñan lo que los ejemplos estándar no pueden. Reforzar lo que ya funciona no cierra la brecha; el routing a humanos es paliativo, no mejora al modelo.'),
+  Question(3,
+      'El 8% de tus facturas extraídas falla la regla de negocio: la suma de line_items no coincide con total_amount. Los documentos están completos. ¿Cómo implementas el retry?',
+      [
+        'Adjuntar al reintento el documento, la extracción fallida y el error específico (los ítems suman X pero total es Y)',
+        'Reintentar 3 veces con el mismo prompt hasta converger',
+        'Marcar esas facturas como datos faltantes y enviarlas a humanos',
+        'Calcular el total en post-proceso y usarlo como canónico'
+      ],
+      0,
+      'El retry con feedback funciona dándole al modelo la discrepancia exacta que debe corregir. Reintentar sin feedback reproduce el mismo error; sustituir el total calculado propagaría errores si los line_items mismos se extrajeron mal.'),
+  Question(0,
+      'Investigando el impacto de la IA en las industrias creativas, el reporte final solo cubre artes visuales. Los subagentes ejecutaron bien sus tareas: IA en arte digital, en diseño gráfico y en fotografía. ¿Causa raíz?',
+      [
+        'La descomposición del coordinador fue demasiado estrecha para el tema',
+        'A síntesis le faltan instrucciones para detectar brechas',
+        'Las queries del subagente de búsqueda son poco exhaustivas',
+        'El análisis de documentos filtra fuentes no visuales'
+      ],
+      0,
+      'Los logs del coordinador revelan la causa directamente: descompuso industrias creativas solo en subtemas visuales, omitiendo música, escritura y cine. Los subagentes hicieron bien lo asignado; el problema es QUÉ se les asignó.'),
 ];

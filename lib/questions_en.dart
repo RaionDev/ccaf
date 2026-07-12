@@ -31,7 +31,7 @@ const questionsEn = <Question>[
       1,
       "stop_reason \"tool_use\" means Claude is requesting a tool call. Your code executes it, appends the tool_result to the conversation, and calls the model again. The model never executes tools by itself."),
   Question(0,
-      "What is the correct condition for TERMINATING the agentic loop?",
+      "You are implementing a support agent loop with the SDK and your code must decide when to stop calling the API. Robust termination signal?",
       [
         "Detecting the word \"DONE\" in the text",
         "The response no longer containing text blocks",
@@ -51,7 +51,7 @@ const questionsEn = <Question>[
       1,
       "Natural-language signals are fragile. The protocol contract is stop_reason: \"tool_use\" continues, \"end_turn\" stops."),
   Question(0,
-      "What is the correct role of a maximum iteration cap in an agent?",
+      "In code review you find the refund agent uses a 10-iteration counter to decide when to finish. What should that cap's role be?",
       [
         "It is the loop's primary termination mechanism",
         "It replaces stop_reason in long-running agents",
@@ -61,7 +61,7 @@ const questionsEn = <Question>[
       2,
       "An iteration cap is a reasonable safety net, but using it as the primary mechanism would cut legitimate tasks short. The primary stop is end_turn."),
   Question(0,
-      "What distinguishes an AGENT from a WORKFLOW?",
+      "Your team debates whether the ticket pipeline needs an agent or a workflow suffices. To decide well, what distinguishes them?",
       [
         "The agent decides which tool to use and when",
         "A workflow cannot invoke language models",
@@ -81,7 +81,7 @@ const questionsEn = <Question>[
       1,
       "Golden rule: the simplest architecture that solves the problem. Agents are justified when the path cannot be predefined."),
   Question(0,
-      "In the orchestrator-workers pattern, what does the orchestrator do?",
+      "You design a multi-agent research system with one coordinator and several specialist workers. What is the coordinator's responsibility?",
       [
         "Runs the subtasks in strictly sequential order",
         "Validates the output format of each worker",
@@ -121,7 +121,7 @@ const questionsEn = <Question>[
       1,
       "Autonomy is calibrated by risk: reversible, low-impact actions run autonomously; irreversible or costly ones get human-in-the-loop."),
   Question(0,
-      "What is the evaluator-optimizer pattern?",
+      "Your report generator produces inconsistent quality and you have clear evaluation criteria. Someone suggests evaluator-optimizer. What is it?",
       [
         "One model generates, another evaluates, iterating",
         "An optimizer tunes temperature until error is minimized",
@@ -141,7 +141,7 @@ const questionsEn = <Question>[
       2,
       "With no dependencies between subtasks, parallelize (sectioning) to cut latency. Sequencing is only justified when one output feeds the next."),
   Question(0,
-      "What is prompt chaining and when does it shine?",
+      "A legal extraction pipeline has clear phases: classify, extract, validate. Someone proposes prompt chaining. What is it and when does it shine?",
       [
         "Concatenating several system prompts in one call",
         "Sequential steps where each call processes the previous output",
@@ -151,7 +151,7 @@ const questionsEn = <Question>[
       1,
       "Chaining decomposes tasks into verifiable phases with gates between steps: better quality and debugging in exchange for more latency."),
   Question(0,
-      "What is the main COST of moving from one agent to a multi-agent system?",
+      "Your single support agent works well, but the team proposes going multi-agent because it scales better. What is the main cost to weigh?",
       [
         "Subagents cannot use tools or MCP",
         "You lose access to the shared system prompt",
@@ -161,7 +161,7 @@ const questionsEn = <Question>[
       3,
       "Each agent adds failure surface and cost. The exam rewards choosing the minimal sufficient architecture, not the most sophisticated one."),
   Question(0,
-      "Before building an agent, what is the recommended first step?",
+      "You are assigned to build an AI agent for the finance department, with no further detail. Recommended first step?",
       [
         "Define success criteria and confirm an agent is needed",
         "Design the full catalog of available tools",
@@ -171,7 +171,7 @@ const questionsEn = <Question>[
       0,
       "Without success criteria you cannot evaluate or iterate. And many \"agent needs\" are solved with a simpler workflow."),
   Question(0,
-      "What is the ROUTING pattern?",
+      "One endpoint receives mixed billing, technical, and sales queries, and a single giant prompt handles them poorly. Someone suggests routing. What is it?",
       [
         "Load-balancing requests across several API keys",
         "Redirecting each tool_result to the right subagent",
@@ -243,7 +243,7 @@ const questionsEn = <Question>[
 
   // ---------- D2: Claude Code ----------
   Question(1,
-      "What is the main purpose of the CLAUDE.md file in a project?",
+      "A new dev on the team asks why the repo has a version-controlled CLAUDE.md at the root. What is its main purpose?",
       [
         "Defining which model and tools will be available at startup",
         "Project memory loaded when the session starts",
@@ -253,7 +253,7 @@ const questionsEn = <Question>[
       1,
       "CLAUDE.md loads automatically at startup and acts as project memory: standards, frequent commands, architecture, warnings."),
   Question(1,
-      "Regarding the CLAUDE.md memory hierarchy, which description is correct?",
+      "Your company wants global policies, each repo its conventions, and each dev their personal preferences. How does the CLAUDE.md hierarchy work?",
       [
         "Only one CLAUDE.md may exist per machine",
         "User level always overrides organization policies",
@@ -263,7 +263,7 @@ const questionsEn = <Question>[
       2,
       "Memories exist at enterprise, project, and user levels; they combine in cascade and organization policies take precedence over personal preferences."),
   Question(1,
-      "How do you create a custom slash command in Claude Code?",
+      "Your team repeats the same changelog-generation prompt weekly and wants to turn it into /changelog. How is the command created?",
       [
         "A .md file with the prompt in .claude/commands/",
         "Registering it in the project's settings.json file",
@@ -273,7 +273,7 @@ const questionsEn = <Question>[
       0,
       "A slash command is a .md file inside .claude/commands/ (project) or ~/.claude/commands/ (user); the file name becomes the command."),
   Question(1,
-      "In a Skill (SKILL.md), which field determines WHEN the model decides to activate it?",
+      "You built a dependency-audit skill but Claude never activates it when it should. Which field determines when it activates?",
       [
         "The triggers field with regular expressions",
         "The tools list declared in the frontmatter",
@@ -283,7 +283,7 @@ const questionsEn = <Question>[
       3,
       "The description is the trigger: it explains what the skill does and when to use it. A vague description keeps the skill from activating correctly."),
   Question(1,
-      "What is the key advantage of delegating a task to a SUBAGENT in Claude Code?",
+      "You must analyze 30 log files without flooding your main Claude Code session. Key advantage of delegating to a subagent?",
       [
         "It isolates its context and returns only the result",
         "It runs with elevated permissions without confirmations",
@@ -293,7 +293,7 @@ const questionsEn = <Question>[
       0,
       "Subagents have their own context window: ideal for context-heavy tasks, returning only a summary to the main agent."),
   Question(1,
-      "In a PreToolUse hook, what does exit code 2 from the script do?",
+      "Your PreToolUse hook validates dangerous Bash commands and exits with code 2 when it detects one. What does that exit code do?",
       [
         "Approves the action and skips future hooks",
         "Blocks the action; Claude sees the stderr",
@@ -323,7 +323,7 @@ const questionsEn = <Question>[
       2,
       "Good instructions are specific and actionable. Vague phrases like \"be careful\" or \"best practices\" do not change behavior."),
   Question(1,
-      "What are ignore rules (excluding paths) for in Claude Code?",
+      "Claude Code wastes time and context reading node_modules and generated data in your monorepo. What are exclusion rules for?",
       [
         "Keeping irrelevant files from consuming context",
         "Protecting secrets by encrypting them at the OS level",
@@ -333,7 +333,7 @@ const questionsEn = <Question>[
       0,
       "Controlling what the agent sees is context management: excluding builds, node_modules, and generated data improves focus, cost, and speed."),
   Question(1,
-      "What is a typical use of a PostToolUse hook?",
+      "Devs keep forgetting to run the formatter after Claude's edits and PRs arrive messy. Typical use of a PostToolUse hook?",
       [
         "Asking for human confirmation before dangerous actions",
         "Running the formatter or linter after each edit",
@@ -363,7 +363,7 @@ const questionsEn = <Question>[
       2,
       "Allow/deny permissions in .claude/settings.json are versioned with the repo and apply to the whole team: governance of what the agent can do. CLAUDE.md instructs but does not enforce."),
   Question(1,
-      "What does Claude Code's \"plan mode\" do?",
+      "You are about to request a delicate database migration and want nothing touched without your approval. What does plan mode do?",
       [
         "Proposes a plan without executing anything until approved",
         "Splits the task across several parallel subagents",
@@ -373,7 +373,7 @@ const questionsEn = <Question>[
       0,
       "Plan mode separates thinking from acting: ideal for large or delicate changes; you approve the plan first, then allow execution."),
   Question(1,
-      "How do you share MCP servers with your whole team in a repository?",
+      "You configured the Jira MCP on your machine and now the whole team wants it with zero manual setup. How do you share it?",
       [
         "Each person registers them manually with /mcp add",
         "With a project-level, version-controlled .mcp.json file",
@@ -393,7 +393,7 @@ const questionsEn = <Question>[
       0,
       "Headless -p mode with structured JSON output lets you integrate it in scripts, reading result, cost, and metadata."),
   Question(1,
-      "How is a custom subagent defined in Claude Code?",
+      "You want a security-reviewer subagent with limited tools, available to the whole team. How is it defined?",
       [
         "A file in .claude/agents/ with its frontmatter",
         "With the /spawn command followed by the agent name",
@@ -413,7 +413,7 @@ const questionsEn = <Question>[
       2,
       "The # shortcut adds the instruction to memory (CLAUDE.md) without leaving the flow, and it stays loaded in future sessions."),
   Question(1,
-      "What is the risk of running Claude Code with --dangerously-skip-permissions?",
+      "A dev proposes running the nightly pipeline with --dangerously-skip-permissions so it never stalls. What is the risk?",
       [
         "It acts without asking for human confirmation",
         "It disables the project's hooks and skills",
@@ -465,7 +465,7 @@ const questionsEn = <Question>[
 
   // ---------- D3: Tools & MCP ----------
   Question(2,
-      "Which element matters MOST for Claude to choose correctly among your tools?",
+      "Your agent picks poorly among the backend's 8 tools. Before touching architecture, which element matters MOST for selection?",
       [
         "The order the tools appear in within the tools array",
         "Clear descriptions of each tool and when to use it",
@@ -505,7 +505,7 @@ const questionsEn = <Question>[
       1,
       "Every tool_use must be answered with its tool_result (paired by id) in the next user-role message; otherwise the API rejects the request."),
   Question(2,
-      "What is the Model Context Protocol (MCP)?",
+      "Your architect asks why use MCP instead of ad-hoc integrations to connect Claude to the CRM and Jira. What is MCP?",
       [
         "The internal format Claude uses to compress its context",
         "An open protocol connecting models to external data and tools",
@@ -515,7 +515,7 @@ const questionsEn = <Question>[
       1,
       "MCP standardizes how apps expose capabilities to models: an MCP server publishes tools, resources, and prompts that any compatible client consumes."),
   Question(2,
-      "What are the three main primitives an MCP server exposes?",
+      "You are designing your first MCP server for the inventory system and must decide what to expose. What are the three available primitives?",
       [
         "Agents, chains, and memories",
         "Requests, responses, and events",
@@ -525,7 +525,7 @@ const questionsEn = <Question>[
       2,
       "Tools (executable actions), resources (read-only data), and prompts (reusable templates)."),
   Question(2,
-      "For a local MCP server running on the same machine as the client, the typical transport?",
+      "Your MCP server runs on the same machine as Claude Code, no network involved. Typical transport?",
       [
         "stdio",
         "WebSocket",
@@ -535,7 +535,7 @@ const questionsEn = <Question>[
       0,
       "stdio is the standard transport for local servers; streamable HTTP is used for remote servers."),
   Question(2,
-      "How do you define the parameters a tool accepts in the Claude API?",
+      "Your search_orders tool needs well-typed, documented customer_id and date_range inputs. How are its parameters defined?",
       [
         "Describing them in free text in the system prompt",
         "With input_schema in JSON Schema format",
@@ -545,7 +545,7 @@ const questionsEn = <Question>[
       1,
       "Each tool declares name, description, and input_schema (JSON Schema). Describing each parameter improves the quality of generated arguments."),
   Question(2,
-      "A good tool NAME is…",
+      "You are naming the support agent's tools and a teammate proposes generic names like query_1. A good tool name is…",
       [
         "generic, like \"execute\", to keep maximum flexibility",
         "a single short word to save tokens",
@@ -555,7 +555,7 @@ const questionsEn = <Question>[
       3,
       "Descriptive, consistent names help the model map intent → correct tool, just like a good API for humans."),
   Question(2,
-      "What is the tool_choice parameter with type \"tool\" for?",
+      "Every document in the pipeline MUST go through extract_invoice_data — never free text or another tool. What is tool_choice with type \"tool\" for?",
       [
         "Forcing the model to invoke a specific tool",
         "Letting the model choose freely among the tools",
@@ -575,7 +575,7 @@ const questionsEn = <Question>[
       1,
       "tool_results consume context. Well-designed tools return what is needed and offer filters/pagination to fetch more if required. Base64 does not reduce tokens."),
   Question(2,
-      "In MCP, what is the key difference between RESOURCES and TOOLS?",
+      "In your catalog's MCP server, prices are looked up and orders are created. To split them correctly, what is the difference between resources and tools?",
       [
         "Resources live on remote servers and tools on the local client",
         "Resources expose readable data; tools are invocable actions",
@@ -625,7 +625,7 @@ const questionsEn = <Question>[
       3,
       "Least privilege: only expose necessary capabilities, with safeguards. What must never happen is best not to exist as a tool at all."),
   Question(2,
-      "What are PROMPTS as an MCP primitive?",
+      "Your MCP server already exposes tools and resources; the team wants standard invocable templates for frequent tasks. What are MCP prompts?",
       [
         "The messages the model sends to the server",
         "Templates the user can invoke",
@@ -677,7 +677,7 @@ const questionsEn = <Question>[
 
   // ---------- D4: Prompts & Structured Output ----------
   Question(3,
-      "What are XML tags recommended for in Claude prompts?",
+      "Your prompt mixes instructions, a 30-page contract, and examples, and the model confuses which is which. What are XML tags for?",
       [
         "Delimiting instructions, data, and examples",
         "Enabling the API's structured parser mode",
@@ -687,7 +687,7 @@ const questionsEn = <Question>[
       0,
       "Claude was trained to attend to XML structure: separating instructions, data, and examples with tags reduces ambiguity and improves reliability."),
   Question(3,
-      "What is the main effect of including few-shot examples in the prompt?",
+      "Your classifier's output format varies on every call despite detailed instructions. Main effect of adding few-shot examples?",
       [
         "They expand the available context window for the task",
         "They teach the expected format and judgment by demonstration",
@@ -717,7 +717,7 @@ const questionsEn = <Question>[
       1,
       "Mark required only what always exists in the source. For possibly missing fields use type: [\"string\", \"null\"]; a required field with no source data induces fabrication."),
   Question(3,
-      "What does \"prefill\" (pre-completing the start of the assistant turn) achieve?",
+      "Your extractor prepends \"Sure! Here is the JSON:\" and breaks the parser. What does prefilling the assistant turn achieve?",
       [
         "Forcing the exact start of the response",
         "Preloading the full prompt into the cache before the request",
@@ -727,7 +727,7 @@ const questionsEn = <Question>[
       0,
       "Prefilling controls how the response starts: useful to force immediate JSON (starting with \"{\"), keep a character, or continue a format."),
   Question(3,
-      "What is the role of the SYSTEM prompt versus the user message?",
+      "You are splitting a legal agent's content between system prompt and user message. What is the role of each?",
       [
         "The system prompt carries less weight than the user message",
         "The system prompt only applies to the conversation's first turn",
@@ -737,7 +737,7 @@ const questionsEn = <Question>[
       3,
       "Separating the stable (role, policies, format) into system and the variable into user also favors prompt caching of the prefix."),
   Question(3,
-      "For a complex multi-step reasoning task, an effective technique is…",
+      "Your agent fails multi-step proration calculations because it answers immediately. An effective technique is…",
       [
         "asking for step-by-step reasoning before the final answer",
         "raising the temperature to explore more options",
@@ -747,7 +747,7 @@ const questionsEn = <Question>[
       0,
       "Giving room to reason before answering (chain of thought or extended thinking) improves analysis, math, and planning. Justifying after answering does not improve the answer."),
   Question(3,
-      "How should you SYSTEMATICALLY evaluate changes to a production prompt?",
+      "You are about to modify the prompt of an agent serving 10,000 customers a day. How do you evaluate the change before deploying?",
       [
         "With manual checks on the most frequent cases",
         "With an eval set and metrics comparing versions",
@@ -767,7 +767,7 @@ const questionsEn = <Question>[
       0,
       "Reinforcing layers: clear instructions, demonstration, and prefill; or the syntax-guaranteed path, tool_use with a JSON Schema."),
   Question(3,
-      "For a data EXTRACTION task needing maximum consistency, which temperature?",
+      "Your pipeline extracts invoice amounts and every run gives slightly different values. Which temperature suits it?",
       [
         "High, so it explores every interpretation",
         "Medium, balancing precision and coverage",
@@ -777,7 +777,7 @@ const questionsEn = <Question>[
       2,
       "Temperature controls sampling randomness: low for deterministic tasks (extraction, classification), high for creativity."),
   Question(3,
-      "The response arrives with stop_reason: \"max_tokens\". What does it mean?",
+      "In production, 3% of your extractions arrive with stop_reason \"max_tokens\". What does that signal mean?",
       [
         "The model finished its answer within the limit",
         "The response was cut off by the output token limit",
@@ -787,7 +787,7 @@ const questionsEn = <Question>[
       1,
       "max_tokens truncates the output: especially bad with JSON (it becomes invalid). Robust production code always inspects stop_reason."),
   Question(3,
-      "What are stop_sequences for?",
+      "You want generation to cut off exactly when the report tag closes, with no trailing text. What are stop_sequences for?",
       [
         "Cutting generation at a sequence you define",
         "Filtering forbidden words from the final response",
@@ -797,7 +797,7 @@ const questionsEn = <Question>[
       0,
       "With stop_sequences you delimit where the output must end (e.g. when a tag closes), useful for controlled formats."),
   Question(3,
-      "Which instruction style works best?",
+      "Your system prompt is a list of 15 prohibitions and the agent is still erratic. Which instruction style works best?",
       [
         "Exhaustive prohibitions of what not to do",
         "Positive: say what to do, plus the restrictions",
@@ -807,7 +807,7 @@ const questionsEn = <Question>[
       1,
       "Saying what to do guides better than only saying what to avoid. Pure negatives leave the model without clear direction."),
   Question(3,
-      "An effective technique to REDUCE hallucinations when answering about a document?",
+      "Your contracts agent finds nonexistent clauses when the document does not cover the question. Effective technique to reduce this?",
       [
         "Allow \"it is not in the document\" and require quotes",
         "Instruct the model to always answer with confidence",
@@ -817,7 +817,7 @@ const questionsEn = <Question>[
       0,
       "The escape hatch (\"say it is missing if it is missing\") plus grounding with citations reduces fabricated answers: the model stops feeling obliged to invent."),
   Question(3,
-      "What does \"role prompting\" in the system prompt add (e.g. \"You are a senior financial analyst\")?",
+      "Your assistant answers tax questions with generic tone and poor judgment. What does assigning an expert role in the system prompt add?",
       [
         "It orients tone, vocabulary, and domain judgment",
         "It unlocks normally restricted expert knowledge",
@@ -889,7 +889,7 @@ const questionsEn = <Question>[
 
   // ---------- D5: Context & Reliability ----------
   Question(4,
-      "What consumes space inside the context window in a conversation with tools?",
+      "Your agent exhausts the window by turn 60 and the team cannot see why since messages are short. What consumes the window?",
       [
         "Only the user and assistant messages",
         "System, history, tools, and tool_results",
@@ -899,7 +899,7 @@ const questionsEn = <Question>[
       1,
       "The window is finite and shared: prompts, history, tools, and results all add tokens. Managing what goes in is a core exam competency."),
   Question(4,
-      "With extremely long contexts, which phenomenon degrades quality?",
+      "You stuffed 150K tokens of documentation into the prompt expecting better answers, and quality DROPPED. Which phenomenon explains it?",
       [
         "Attention dilution over the relevant details",
         "Expiration of the oldest tokens",
@@ -909,7 +909,7 @@ const questionsEn = <Question>[
       0,
       "More context is not always better: relevant information competes with noise. Curating, summarizing, and isolating in subagents fights dilution."),
   Question(4,
-      "To benefit from PROMPT CACHING, how do you organize the prompt?",
+      "Your agent repeats the same 8K-token system prompt and 20 tools on every call, paying full price each time. How do you organize the prompt to cache?",
       [
         "Variable content first and the stable blocks at the end",
         "Alternating stable and variable blocks",
@@ -929,7 +929,7 @@ const questionsEn = <Question>[
       0,
       "Compaction replaces old turns with a faithful summary of the state, freeing window without losing the essentials or the thread of the task."),
   Question(4,
-      "When is it worth delegating a subtask to a subagent in context terms?",
+      "Your main agent must explore 30 repos while sustaining a long user conversation. When is delegating to a subagent worth it?",
       [
         "When the subtask needs to see the full prior history",
         "When it generates lots of context and only the summary matters",
@@ -1019,7 +1019,7 @@ const questionsEn = <Question>[
       3,
       "With conflicting data from credible sources, annotate the conflict with each source's attribution instead of choosing arbitrarily. Publication dates prevent temporal differences from reading as contradictions."),
   Question(4,
-      "Claude's current models have a context window on the order of…",
+      "You are assessing whether a 300-page case file fits in a single call. Current models' context window is on the order of…",
       [
         "8,000 tokens",
         "32,000 tokens",
@@ -1039,7 +1039,7 @@ const questionsEn = <Question>[
       2,
       "Massive, delay-tolerant jobs go to the Batch API: ~50% off in exchange for asynchronous results within a window of up to 24 hours."),
   Question(4,
-      "When trimming a long tool-using conversation, what should you remove or summarize FIRST?",
+      "Your tool-heavy session is at 90% of the window and you must free space without losing the thread. What do you remove or summarize FIRST?",
       [
         "The system prompt and the tool definitions",
         "Old, bulky tool_results already processed",
@@ -1524,13 +1524,13 @@ const questionsEn = <Question>[
   Question(4,
       "Customer: \"This is ridiculous, I have been waiting 20 minutes. Connect me to a real person.\" The agent sees it is a 30-second password reset. What should it do?",
       [
-        "Escalate immediately without attempting anything",
+        "Honor the request and escalate to a human immediately",
         "Run sentiment analysis first to confirm the frustration",
         "Ask whether they prefer waiting for a human or a quick fix",
-        "Acknowledge the frustration and offer to fix it now; escalate if they insist"
+        "Acknowledge the frustration and offer to fix it; escalate if they insist"
       ],
-      3,
-      "Exam nuance: when the issue is clearly within the agent's capability, acknowledge the frustration and offer immediate resolution, escalating only if the customer reiterates their preference."),
+      0,
+      "Exam principle: an EXPLICIT request to speak with a human is honored immediately on the first request, without investigating first. That the agent COULD resolve it is not the deciding factor; proceeding despite the request only adds frustration."),
   Question(2,
       "search_knowledge_base catches \"cancel my subscription\"; after adding \"cancellations\" to process_action, it now answers informational queries. Most effective solution?",
       [
@@ -1601,4 +1601,316 @@ Question(1,
       ],
       2,
       "The @ mention adds the file (or directory) directly to the conversation context: more precise and cheaper than pasting contents, and more reliable than hoping the agent finds it."),
+// ---------- Targeted reinforcement: failed score-report objectives ----------
+  Question(1,
+      "Three team rules: (1) commit message style, (2) never touch /prod-config, (3) prefer unit tests first. Which REQUIRES enforcement via hooks or permissions, not CLAUDE.md?",
+      [
+        "Rule (1): commit style is the most visible",
+        "Rule (2): a prohibition that must always be guaranteed",
+        "Rule (3): test ordering affects quality",
+        "All three belong in CLAUDE.md equally"
+      ],
+      1,
+      "Exam criterion: preferences and conventions (style, work order) go in CLAUDE.md; prohibitions that must NEVER be violated (touching /prod-config) go in deny permissions or hooks, applied deterministically."),
+  Question(1,
+      "Despite a CLAUDE.md instruction to never run migrations in production, Claude did it once every ~50 sessions. Architectural lesson?",
+      [
+        "Rewrite the instruction in caps and repeat it",
+        "Lower the session temperature to zero",
+        "CLAUDE.md is probabilistic: forbidden actions get blocked with permissions or hooks",
+        "Add few-shot examples of correct sessions"
+      ],
+      2,
+      "A 2% instruction failure rate is expected: the model can deviate. Anything with ZERO failure tolerance moves to deterministic enforcement (deny permissions, PreToolUse hooks)."),
+  Question(2,
+      "You are testing an experimental MCP server only you use, inside a repo shared by 40 devs. Where do you configure it?",
+      [
+        "In the project's .mcp.json, versioned in git",
+        "At the user (local) level, without imposing it on the team",
+        "In the root CLAUDE.md under an mcp section",
+        "In the project's settings.json with an allow rule"
+      ],
+      1,
+      "Scope rule: project level (versioned .mcp.json) for shared team tooling; user/local level for personal or experimental configs. Committing your experiment imposes it on 40 people."),
+  Question(2,
+      "You added the MCP server to .mcp.json but its tools do not appear in the session. First verification step?",
+      [
+        "Check discovery with /mcp and the server's startup errors",
+        "Reinstall Claude Code from scratch",
+        "Move the configuration to ~/.claude.json",
+        "Duplicate the server in the user scope as well"
+      ],
+      0,
+      "MCP integration is verified: /mcp shows connected servers and discovered tools. If the server fails to start (path, credentials, dependencies), the error shows there before touching scopes."),
+  Question(3,
+      "A banking pipeline consumes the JSON downstream with zero tolerance: one malformed JSON halts the line. Structured output method?",
+      [
+        "Detailed instructions and examples in the prompt",
+        "Prefilling the assistant turn with the opening brace",
+        "Tool use with a JSON Schema, which guarantees syntax",
+        "Request markdown and convert it to JSON in the backend"
+      ],
+      2,
+      "Method choice depends on required strictness: when schema compliance is critical, tool use with JSON Schema is the only one that GUARANTEES valid syntax. Prompting and prefill only make it likely."),
+  Question(3,
+      "For an internal summary where occasionally imperfect JSON is tolerable and you want minimal complexity, reasonable method?",
+      [
+        "Tool use with a strict schema and full validation",
+        "Prompt-based formatting with instruction and example, accepting the trade-off",
+        "Fine-tune a JSON summarization model",
+        "Route it through the Batch API for more control"
+      ],
+      1,
+      "The exam asks you to MATCH method to strictness: with high failure tolerance, prompt-based formatting is simpler and sufficient. Strict schemas are reserved for pipelines that cannot tolerate errors."),
+  Question(3,
+      "In your invoices, purchase_order only sometimes exists and currency is one of 5 known currencies with rare exceptions. Schema design?",
+      [
+        "Both fields as required strings",
+        "purchase_order required and currency as a free string",
+        "Both as optional free strings",
+        "purchase_order nullable/optional and currency an enum with \"other\""
+      ],
+      3,
+      "Each field models its reality: what can be missing is nullable/optional (prevents fabrication); what has a known catalog with exceptions is enum + \"other\" (+ detail). Schema design = structural anti-hallucination."),
+  Question(3,
+      "After marking every field required to \"guarantee completeness\", extraction accuracy DROPPED. Likely explanation?",
+      [
+        "The larger schema consumes too many tokens",
+        "The model fabricates values for fields absent from the source",
+        "The API ignores the schema's required fields",
+        "Temperature interacts poorly with required fields"
+      ],
+      1,
+      "required forces the model to ALWAYS produce a value: when the data does not exist in the document, it invents one to satisfy the contract. Use required only for what is always present in the source."),
+  Question(3,
+      "Your extractor sometimes replies \"Not enough data found\" as free text and breaks the pipeline. Fix that GUARANTEES it?",
+      [
+        "A prominent instruction: reply only with JSON",
+        "An automatic retry when the output fails to parse",
+        "tool_choice forcing the extraction tool, with nullable fields",
+        "Prefilling the response with the opening brace"
+      ],
+      2,
+      "Forced tool_choice guarantees tool invocation (never conversational text); nullable fields give it a legitimate way to represent \"no data\" INSIDE the schema. Instructions and prefill only reduce the probability."),
+  Question(2,
+      "process_refund requires the order_id returned by lookup_order, but the agent sometimes calls process_refund first with invented IDs. Solution?",
+      [
+        "Remove process_refund from the tool catalog",
+        "Declare the prerequisite in descriptions and reject unobtained IDs",
+        "Set tool_choice: \"any\" on every turn",
+        "Lower the refund agent's temperature"
+      ],
+      1,
+      "Prerequisite sequencing: process_refund's description must state that order_id comes from lookup_order, and the backend validates/rejects IDs that were not obtained, returning an actionable error."),
+  Question(2,
+      "Your inventory tool fails on network timeouts, nonexistent SKUs, or denied permissions, but always returns \"Error\". The agent retries everything alike. Correct design?",
+      [
+        "Typed errors with recoverability and a suggested next action",
+        "Increase the number of automatic retries",
+        "Catch the errors and return an empty success",
+        "Escalate to a human on any kind of error"
+      ],
+      0,
+      "The exam's MCP error handling: errors structured by TYPE (timeout: retryable; missing SKU: not retryable, inform; permission: escalate) so the agent decides informedly instead of blind retrying."),
+  Question(2,
+      "An error tool_result returns retryable: true and retry_after: 30 with code RATE_LIMITED. What does it enable versus a generic \"Operation failed\"?",
+      [
+        "Nothing: the model cannot read structured fields",
+        "It reduces the tool_result's token size",
+        "The agent decides informedly: wait and retry instead of guessing",
+        "It avoids having to flag is_error on the result"
+      ],
+      2,
+      "Structured error info (type, recoverability, wait time) turns the failure into a decision: retry after 30s. With \"Operation failed\", the agent can only guess."),
+  Question(2,
+      "get_account_balance and get_account_statement get confused despite one-line descriptions. What do you add to each description?",
+      [
+        "Synonyms of the tool name for wider coverage",
+        "Use-case examples, input formats, and explicit use-this-not-that guidance",
+        "A numeric priority to order the selection",
+        "Nothing: similar tools should always be consolidated"
+      ],
+      1,
+      "The exam's recipe for semantically similar tools: example use cases, input format specifications, and explicit disambiguation (\"use this when…, use the other when…\")."),
+  Question(0,
+      "Your loop treats stop_reason \"max_tokens\" the same as \"end_turn\" and ships truncated answers as final. Correct handling?",
+      [
+        "They are equivalent: both mean the turn ended",
+        "Cancel the conversation and start over",
+        "Treat max_tokens as if it were tool_use",
+        "max_tokens means truncation: continue or retry with more tokens"
+      ],
+      3,
+      "The loop distinguishes THREE signals: tool_use (execute and continue), end_turn (finish), and max_tokens (truncated output: not a valid ending; continue generation or retry with a higher limit)."),
+  Question(1,
+      "The generated code has 4 independent bugs and 2 that interact with each other. How do you structure the refinement feedback?",
+      [
+        "The interacting ones together in one message; independents can go sequentially",
+        "All together always, to save conversation turns",
+        "One at a time always, to avoid confusing the model",
+        "Regenerate the code from scratch with the original prompt"
+      ],
+      0,
+      "Iterative refinement pattern: problems that INTERACT are described together (fixing one affects the other); independent ones can be handled sequentially with targeted feedback."),
+  Question(4,
+      "You must locate where VAT is computed in a 500K-line monorepo without burning the window. Exploration strategy?",
+      [
+        "Read the project's 30 main files",
+        "Grep for terms, Glob to narrow paths, Read only what is relevant",
+        "Ask the agent to read the entire repository",
+        "A subagent that loads every module into its context"
+      ],
+      1,
+      "The exam's incremental exploration: Grep locates terms (cheap), Glob narrows by path patterns, Read is reserved for the few files confirmed relevant. Reading broadly burns context without focus."),
+  Question(4,
+      "A codebase exploration will span several sessions that exceed the context window. How do you keep coherence across sessions?",
+      [
+        "Repeat the full exploration at the start of each session",
+        "Trust the prompt cache to preserve what was learned",
+        "A scratchpad file with findings and state, re-read on resumption",
+        "Raise max_tokens to the maximum on every call"
+      ],
+      2,
+      "The scratchpad (findings notes, code map, pending items) persists OUTSIDE the window and is re-read when resuming: multi-session coherence without repeating work. The cache does not survive across sessions."),
+  Question(1,
+      "You ask Claude Code to (a) rename a local variable and (b) redesign the authentication module. When do you use plan mode?",
+      [
+        "In both cases, for workflow consistency",
+        "Only in (b): large scope and uncertainty; (a) runs directly",
+        "Only in (a): renames break references",
+        "In neither: plan mode is only for debugging"
+      ],
+      1,
+      "Plan mode is decided by scope, reversibility, and architectural uncertainty: the auth redesign calls for a plan and review; a local rename is trivial and reversible — direct execution."),
+  Question(4,
+      "You extract 20 fields per document; only total_amount and due_date cause real losses if wrong. Human review routing?",
+      [
+        "Review a random sample of whole documents",
+        "Review 100% of processed documents",
+        "Trust the pipeline's aggregate accuracy metric",
+        "Route by confidence and ambiguity of the CRITICAL fields"
+      ],
+      3,
+      "The exam's routing is field-level and risk-based, not random per document: low confidence or ambiguity on loss-causing fields triggers review; the 18 benign fields do not merit the same effort."),
+  Question(0,
+      "Your research coordinator ALWAYS spawns the same 5 fixed subagents, whether the topic needs them or not. Architectural improvement?",
+      [
+        "Dynamic decomposition: create subtasks as discoveries emerge",
+        "Increase to 8 fixed subagents for more coverage",
+        "Reduce to 3 fixed subagents to cut cost",
+        "Run the 5 fixed ones in parallel for speed"
+      ],
+      0,
+      "Decomposition must ADAPT: the coordinator generates subtasks dynamically as findings emerge, instead of executing a fixed template that overshoots simple topics and undershoots complex ones."),
+// ---------- New concepts from the official sample bank ----------
+  Question(0,
+      "A colleague proposes the loop store tool_results in a database and pass the model only a summary per iteration. When would this degrade the agent?",
+      [
+        "When results arrive in under 200 ms",
+        "When there are more than 10 calls per session",
+        "When the model must reason across several results at once and the summary omits details",
+        "When results contain binary data"
+      ],
+      2,
+      "The loop depends on results being in the history so the model can reason over what it has already discovered before deciding its next action. A summary can omit field values, error codes, or conditional data that decision needs."),
+  Question(0,
+      "An analysis subagent covered only 3 of its 5 assigned sources. How does the coordinator re-delegate the missing work?",
+      [
+        "Ask synthesis to infer the missing sources' content",
+        "Re-invoke the subagent with ONLY the 2 missing sources, passing completed findings as context",
+        "Send all 5 sources again to a fresh instance",
+        "Have the coordinator analyze the 2 sources itself"
+      ],
+      1,
+      "The coordinator's role includes evaluating gaps and re-delegating TARGETED work: only what is missing, with prior findings as context. Reprocessing everything wastes resources; inferring fabricates data; doing it itself breaks specialization."),
+  Question(4,
+      "A customer brings THREE independent issues in one message (billing dispute, missing order, email change) and the agent handles them serially, 3-4 minutes each. Correct redesign?",
+      [
+        "Handle only the top-priority one and request separate tickets",
+        "Keep the sequence but cache intermediate results",
+        "A single specialized multi-issue subagent",
+        "Decompose into parallel items sharing the customer context, then compile a unified response"
+      ],
+      3,
+      "Independent concerns are investigated IN PARALLEL reusing the already-retrieved customer context, then compiled into one response. Requesting separate tickets degrades the experience; caching does not remove the serial bottleneck."),
+  Question(0,
+      "Your MCP tools return heterogeneous formats: Unix timestamps, ISO 8601 dates, and numeric status codes (1=active, 2=paused). The agent misreads them while reasoning. Architectural fix?",
+      [
+        "Format conversion instructions in the system prompt",
+        "PostToolUse hooks normalizing results BEFORE the model processes them",
+        "Reformat dates and statuses in the final response",
+        "Update all three backends to a uniform format"
+      ],
+      1,
+      "PostToolUse intercepts and transforms results before the model reasons on them: it always sees normalized data. Reformatting at the end cannot repair conclusions already made; changing backends couples systems and may be infeasible; prompts are probabilistic."),
+  Question(4,
+      "Your PostToolUse hook appends a formatted summary of Bash output but ALSO keeps the full raw output. Sessions exhaust context fast. Most effective change?",
+      [
+        "Disable the hook and process raw output",
+        "Raise max_tokens to fit both outputs",
+        "Have the hook return ONLY the summary, trimming the raw output",
+        "Pre-process Bash commands to shorten their output"
+      ],
+      2,
+      "Keeping raw + summary doubles each call's context consumption. The hook should return only the relevant data: trimming the verbose output addresses the root cause. max_tokens controls output, not the growing input context."),
+  Question(1,
+      "Edit fails with a non-unique match error (3 occurrences) while changing a value in a block of nearly identical lines. Correct fallback?",
+      [
+        "sed via Bash to replace every occurrence",
+        "Read the file and retry Edit with a longer, unique old_string",
+        "Write to overwrite the whole corrected file",
+        "Grep for the line number and pass it to Edit"
+      ],
+      1,
+      "With non-unique text, use Read to find enough surrounding context and retry Edit with a unique anchor: more surgical than a full overwrite. Edit takes no line numbers, and sed would replace all 3 occurrences."),
+  Question(1,
+      "In CI, Claude suggests test cases that ALREADY exist in the test files, wasting review time. Most direct fix?",
+      [
+        "Document standards in CLAUDE.md and instruct reviewing existing tests before suggesting",
+        "Add the -p flag to the pipeline invocation",
+        "Use --output-format json to deduplicate afterwards",
+        "A post-processing script filtering duplicates"
+      ],
+      0,
+      "The root cause is that Claude does not know which tests exist. Documenting standards and fixtures in CLAUDE.md and instructing it to review existing tests fixes it at generation time; filtering afterwards is a patch that adds complexity."),
+  Question(1,
+      "Your pipeline regex-parses Claude's free text to extract file, line, and comment per finding, and the parser breaks whenever the format drifts. Most robust solution?",
+      [
+        "Stricter format instructions with validation rejecting deviations",
+        "--output-format json with --json-schema defining file, line, and comment fields",
+        "A second Claude call normalizing the first response",
+        "Switch to a single summary comment without lines"
+      ],
+      1,
+      "With --output-format json and --json-schema, each finding conforms to the schema BY CONSTRUCTION: format drift and the regex layer disappear. Hardening instructions still depends on model consistency, which is the cause of the breakage."),
+  Question(3,
+      "Your extractor classifies standard clauses well but fails on ambiguous ones mixing two categories (termination + force majeure). Most effective few-shot approach?",
+      [
+        "More standard-clause examples to reinforce the schema",
+        "Extract without classifying and use a rule-based classifier",
+        "A confidence field routing doubtful cases to humans",
+        "Examples TARGETED at ambiguous cases, showing the reasoning for why they belong to one category and not the other"
+      ],
+      3,
+      "Few-shot examples targeted at the failure mode — boundary cases WITH the decision reasoning — teach what standard examples cannot. Reinforcing what already works does not close the gap; human routing is a safeguard, not a model improvement."),
+  Question(3,
+      "8% of your extracted invoices fail the business rule: line_items do not sum to total_amount. The documents are complete. How do you implement the retry?",
+      [
+        "Attach the document, the failed extraction, and the specific error (items sum to X but total is Y) to the retry",
+        "Retry 3 times with the same prompt until it converges",
+        "Flag those invoices as missing data and route to humans",
+        "Compute the total in post-processing and use it as canonical"
+      ],
+      0,
+      "Retry-with-feedback works by giving the model the exact discrepancy to correct. Retrying without feedback reproduces the same error; substituting a computed total would propagate errors if the line items themselves were extracted wrong."),
+  Question(0,
+      "Researching AI's impact on creative industries, the final report covers only visual arts. The subagents executed their tasks well: AI in digital art, in graphic design, and in photography. Root cause?",
+      [
+        "The coordinator's decomposition was too narrow for the topic",
+        "Synthesis lacks instructions to detect coverage gaps",
+        "The search subagent's queries are not exhaustive enough",
+        "Document analysis filters out non-visual sources"
+      ],
+      0,
+      "The coordinator's logs reveal the cause directly: it decomposed creative industries into visual-only subtopics, omitting music, writing, and film. The subagents did their assigned work well; the problem is WHAT they were assigned."),
 ];
